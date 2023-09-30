@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PowerSavvy</title>
+    <link rel="stylesheet" href="assets/main-style.css">
+    <link rel="stylesheet" href="assets/userdetails.-style.css">
+    <script src="./pagetemplate.js" type="text/javascript"></script>
+    
+    <!---we had linked our css file----->
+</head>
+<body>
+    <div id="loader"></div>
+    <script>
+        window.onload=()=>{
+            document.getElementById('header').innerHTML=createheader();
+        }
+    </script>
+    <header id="header"></header>
+    <!--content-->
+    <div id="user-details" >
+        <img id="dp" src="./assets/images/profile-pic.png" alt="profile-pic">
+        <div class="div-format">
+        <label>NAME:  <p><script>
+            document.write(localStorage.getItem("fname")+" "+localStorage.getItem("lname"));
+        </script></p></label>
+        <label>MOBILE NUMBER:<p><script>
+            document.write(localStorage.getItem("mbno"));
+        </script></p></label>
+        <label>KSEB CONSUMER ID:<p><script>
+            document.write(localStorage.getItem("ecno"));
+        </script></p></label>
+        <label>ETAPP ID:<p><script>
+            document.write(localStorage.getItem("wcno"));
+        </script></p></label>
+        <p></p>
+        <button type='button'class='submit-btn' onclick="Logout()">Log Out</button>
+        </div>
+    </div>
+    <div id="savypoints">
+        <img id="savyimg" src="./assets/images/pointsicon.png" alt="savvypoint">
+        <p>Savvypoints:</p>
+        <p class="balancetext">
+        <script>
+            document.write(localStorage.getItem("points"));
+        </script></p>
+        <a class="submit-btn"href="redeem.html" style="text-decoration: none;">Redeem Points</a>
+    </div>
+    <!--content-->
+
+    <script>
+        var loader=document.getElementById('loader');
+        window.onload(function(){
+            loader.style.display="block";
+        })
+        window.addEventListener("load",function(){
+            loader.style.display="none";
+        })
+        function Logout(){
+                window.location.href='index.html';
+                alert("Log out successfull");
+        }
+    </script>
+
+</body>
+</html>

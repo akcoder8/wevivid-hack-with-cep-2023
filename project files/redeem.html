@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PowerSavvy</title>
+    <link rel="stylesheet" href="assets/main-style.css">
+    <link rel="stylesheet" href="assets/redeem-style.css">
+    <script src="./pagetemplate.js" type="text/javascript"></script>
+    
+    <!---we had linked our css file----->
+</head>
+<body>
+    <div id="loader"></div>
+    <div class="navbar divalign" style = "max-width: 100%;"> <div class="divalign"> <img src="assets/images/logo.png" alt="logo" id="logo"> <a id="title" href="#"><h1>POWERSAVVY</h1></a> </div> </div > 
+    <main>
+        <div >
+            <img src="./assets/images/reward.png" alt="reward">
+            <label>Enter the bill:</label>
+            <input id="bill" type="number" class="input-field"placeholder="Enter bill">
+            <button type="button" class="submit-btn" onclick='calcpoints()'>Check your savings</button>
+
+        </div>
+        
+
+    </main>
+    <script>
+        var loader=document.getElementById('loader');
+        window.onload=()=>{
+            loader.style.display="block";
+        }
+        window.addEventListener("load",function(){
+            loader.style.display="none";
+        })
+            
+
+    </script>
+    <script>
+        function calcpoints(){
+            let previousbill,points,presentbill,temp;
+            previousbill=localStorage.getItem("previousbill")?parseInt(localStorage.getItem("previousbill")):750;
+            points=parseInt(localStorage.getItem("points"));
+            presentbill=parseInt(document.getElementById('bill').value);
+            console.log(presentbill);
+            console.log(previousbill);
+            temp=previousbill-presentbill;
+            console.log(temp);
+            if(temp>=0)
+            {
+                let per=temp/previousbill*100;
+                console.log(per);
+                for(var i=10;i<=100;i=i+10)
+                {
+                    if(per<i)
+                    {
+                    points=points+i/2;
+                    break;
+                    }
+                }
+                console.log(points)
+                alert("Points updated ");
+
+            }
+            else
+            {
+                temp=Math.abs(temp);
+                let per=temp/previousbill*100;
+                for(var i=10;i<=100;i=i+10)
+                {
+                    if(points==0)
+                    break;
+                    if(per<i)
+                    {
+                    points=points-i/3;
+                    break;
+                    }
+                }
+                console.log(points);
+   
+            }
+            points=Math.round(points);
+            points=points.toString();
+            previousbill=presentbill.toString();
+            localStorage.setItem("previousbill",previousbill);
+            localStorage.setItem("points",points);
+            window.location.href="userdetails.html";
+        }
+    </script>
+
+</body>
+</html>

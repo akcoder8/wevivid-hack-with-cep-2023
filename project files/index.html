@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PowerSavvy</title>
+    <link rel="stylesheet" href="assets/main-style.css">
+    <link rel="stylesheet" href="assets/index-style.css">
+    <script src="./pagetemplate.js" type="text/javascript"></script>
+    
+    <!---we had linked our css file----->
+</head>
+<body>
+    <div id="loader"></div>
+    <!--<script>
+        window.onload=()=>{
+            document.getElementById('header').innerHTML=createheader();
+        }
+    </script>-->
+
+    <div class="navbar divalign" style = "max-width: 100%;"> <div class="divalign"> <img src="assets/images/logo.png" alt="logo" id="logo"> <a id="title" href="#"><h1>POWERSAVVY</h1></a> </div> </div > 
+
+    <header id="header"></header>
+        <div id='login-form'class='login-page'>
+            <div class="form-box">
+                <div class='button-box'>
+                    <div id='btn'></div>
+                    <button type='button'onclick='login()'class='toggle-btn'>Log In</button>
+                    <button type='button'onclick='register()'class='toggle-btn'>Register</button>
+                </div>
+                <div id="formwrap">
+                <form id='login' class='input-group-login'>
+                    <input id="moblogin" type='text'class='input-field'placeholder='Mobile Number' required >
+		    <input id="passlogin" type='password'class='input-field'placeholder='Enter Password' required>
+		    <input type='checkbox'class='check-box'><span>Remember Password</span>
+		    <button type='button'class='submit-btn' onclick="validateData()">Log in</button>
+		 </form>
+		 <form id='register' class='input-group-register'>
+		     <input id="fname" type='text'class='input-field'placeholder='First Name' name="fname"required>
+		     <input id="lname"type='text'class='input-field'placeholder='Last Name ' name="lname"required>
+		     <input id="mbno"type='number'class='input-field'placeholder='Mobile no.' name="mbno"required>
+		     <input id="ecno"type='number'class='input-field'placeholder='Electricity Consumer no.' name="ecno"required>
+		     <input id="wcno"type='number'class='input-field'placeholder='Etapp Consumer no.' name="wcno"required>
+		     <input id="password1"type='password'class='input-field'placeholder='Enter Password' required>
+		     <input id="password" type='password'class='input-field'placeholder='Confirm Password'  name="password"required>
+		     <input type='checkbox'class='check-box'><span>I agree to the terms and conditions</span>
+                    <button type='submit'class='submit-btn' onclick="saveData()">Register</button>
+	         </form>
+            </div>
+            </div>
+        </div>
+    <script>
+        var x=document.getElementById('login');
+		var y=document.getElementById('register');
+		var z=document.getElementById('btn');
+		function register()
+		{
+			x.style.marginLeft='-680px';
+			z.style.left='160px';
+		}
+		function login()
+		{
+			x.style.marginLeft='30px'
+			z.style.left='0px';
+		}
+	</script>
+	<script>
+        function saveData(){
+            let fname,lname,mbno,ecno,wcno,password1,password,points,presentbill,previousbill;
+            fname=document.getElementById('fname').value;
+            console.log("called");
+            lname=document.getElementById('lname').value;
+            mbno=document.getElementById('mbno').value;
+            ecno=document.getElementById('ecno').value;
+            wcno=document.getElementById('wcno').value;
+            password=document.getElementById('password').value;
+            password1=document.getElementById('password1').value;
+            points=0;
+            previousbill=750;
+            if(password!=password1)
+            {
+                alert("passwords doesnt match");
+                return;
+            }
+            let user_records=[];
+            console.log(user_records[0]);
+            user_records=JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[];
+            if(user_records.some((v)=>{return v.ecno==ecno}))
+            {
+                alert("Consumer number already registered");
+            }
+            else{
+                user_records.push(
+                    {
+                        "fname":fname,
+                        "lname":lname,
+                        "mbno":mbno,
+                        "ecno":ecno,
+                        "wcno":wcno,
+                        "password":password,
+                        "points":points,
+                        "previousbill":previousbill,
+                        "presentbill":presentbill
+                    });
+                    localStorage.setItem("users",JSON.stringify(user_records));
+                    alert("User Registered");
+        
+                    
+            }
+        }
+
+        function validateData(){
+            let userid,password;
+            userid=document.getElementById('moblogin').value;
+            password=document.getElementById('passlogin').value;
+            let login_data;
+            login_data=JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[];
+            if(login_data.some((v)=>{return v.mbno==userid&&v.password==password  }))
+            {
+                alert("Login successfull");
+                let current=login_data.filter((v)=>{
+                    return v.mbno==userid&&v.password==password 
+                })[0]
+                localStorage.setItem("fname",current.fname);
+                localStorage.setItem("lname",current.lname);
+                localStorage.setItem("mbno",current.mbno);
+                localStorage.setItem("ecno",current.ecno);
+                localStorage.setItem("wcno",current.wcno);
+                localStorage.setItem("points",current.points);
+                localStorage.setItem("previousbill",current.previousbill);
+                
+                window.location.href='userdetails.html';
+                
+            }
+            else
+            {
+                alert("Login failed invalid credentials");
+            }
+            
+        }
+                
+    </script>
+    <script>
+        var loader=document.getElementById('loader');
+        window.onload=()=>{
+            loader.style.display="block";
+        }
+        window.addEventListener("load",function(){
+            loader.style.display="none";
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+#usericon{
+    width:70px;
+	height:70px;
+	padding:20px;
+    background-color: rgb(4, 98, 58);
+	border-radius: 5px;
+	border-bottom:3px solid #999;
+
+}
+.submit-btn
+{
+	width: 85%;
+	padding: 10px 30px;
+	cursor: pointer;
+	display: block;
+    color:white;
+	font-size: 1.5em;
+    font-family: 'Anton', sans-serif;
+	margin: auto;
+	background:rgb(4, 98, 58);
+	border: 0;
+	outline: none;
+	border-radius: 30px;
+}
+a:hover
+{
+    background:rgb(1, 31, 18);
+    transition: 0.5s;
+}
+
+#user-details{
+    width: 700px;
+	margin:auto;
+	margin-top: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+	background:rgba(0,0,0,0.6);
+	padding:10px;
+	border-radius: 10px;
+}
+label{
+    display:block;
+    padding:10px 0;
+}
+label p{
+    display:inline;
+    margin-left:5px;
+}
+.div-format{
+    text-align: left;
+    font-size:1.5em;
+    width:80%;
+    margin:auto;
+    padding:20px;
+}
+#dp{
+    width:200px;
+    height:200px;
+    display:block;
+    padding:20px;
+}
+#savyimg{
+    display:block;
+    width:60px;
+    height:60px;
+    padding:20px;
+}
+.balancetext{
+    font-size: 1.5em;
+
+}
+#savypoints{
+    width: 150px;
+	min-height:480px;
+    position:absolute;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    top:250px;
+    right:0;
+	background:rgba(0,0,0,0.6);
+	padding:10px;
+	border-radius: 10px;
+}

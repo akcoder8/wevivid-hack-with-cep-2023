@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PowerSavvy</title>
+    <link rel="stylesheet" href="assets/main-style.css">
+    <link rel="stylesheet" href="assets/intro-style.css">
+
+    <script src="./pagetemplate.js" type="text/javascript"></script>
+    
+    <!---we had linked our css file----->
+</head>
+<body>
+    <div id="loader"></div>
+    <script>
+        window.onload=()=>{
+            document.getElementById('header').innerHTML=createheader();
+        }
+    </script>
+    <header id="header"></header>
+    <main>
+        <div>
+           <p>This is a paragraph</p> 
+        </div>
+        
+        <div>
+            <h2>Community to work together</h2>
+            <img src="./assets/images/communityicon.png" alt="communityicon">
+            <p>This is a paragraph</p>
+            
+        </div>
+        <div>
+            <h2>Interactive mapping system</h2>
+            <img src="./assets/images/mapicon.png" alt="communityicon">
+            <p>This is a paragraph</p>
+            
+        </div>
+        <div>
+            <h2>Savypoints Reward</h2>
+            <img src="./assets/images/pointsicon.png" alt="communityicon">
+            <p>This is a paragraph</p>
+            
+        </div>
+        <div>
+            <h2>Project Management System</h2>
+            <img src="./assets/images/projecticon.png" alt="communityicon">
+            <p>This is a paragraph</p>
+            
+        </div>
+
+
+    </main>
+    <script>
+        var loader=document.getElementById('loader');
+        window.onload=()=>{
+            loader.style.display="block";
+        }
+        window.addEventListener("load",function(){
+            loader.style.display="none";
+        })
+    </script>
+</body>
